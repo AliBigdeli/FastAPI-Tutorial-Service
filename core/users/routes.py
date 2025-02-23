@@ -30,12 +30,12 @@ async def user_login(request: UserLoginSchema, db: Session = Depends(get_db)):
     if not user_obj:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid user aor password",
+            detail="Invalid user or password",
         )
     if not user_obj.verify_password(request.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid user aor password",
+            detail="Invalid user or password",
         )
 
     # Token Based Authentication

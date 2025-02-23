@@ -42,6 +42,15 @@ services:
       # This is where smtp4dev stores the database..
         - smtp4dev-data:/smtp4dev
 
+  locust:
+    image: locustio/locust
+    container_name: locust
+    ports:
+     - "8089:8089"
+    volumes:
+      - ./core/locust:/mnt/locust
+    command: -f /mnt/locust/locustfile.py
+
   backend:
     build:
       context: .
